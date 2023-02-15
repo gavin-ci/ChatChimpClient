@@ -16,6 +16,7 @@ namespace UserClient {
             remoteEndPoint = new IPEndPoint(iPAddress, port);
             //init socket
             localSocket = new Socket(iPAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+            buffer = new byte[6000];
         }
         public void connect() {
             localSocket.Connect(remoteEndPoint);

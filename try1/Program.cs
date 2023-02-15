@@ -25,7 +25,12 @@ namespace Networking {
 
         static void startReceiving( Client client)
         {
-            client.getConn().ReceiveMessageFrom()
+            EndPoint remoteEndPoint = client.getConn().RemoteEndPoint!;
+            client.getConn().BeginReceiveFrom(client.getBuffer(), 0, client.getBuffer().Length, SocketFlags.None, ref remoteEndPoint, handlePacket, client);
+        }
+
+        static void handlePacket( IAsyncResult result) {
+
         }
     }
 }
