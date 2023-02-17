@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using ChatChimpClient.Core.Gui;
 using ChatChimpClient.Core.Networking;
 using ChatChimpClient.Core.PacketHandlers;
 namespace Networking
@@ -9,7 +10,11 @@ namespace Networking
 
     class EntryPoint {//
         //initialize socket
+        [STAThread]
         static void Main(string[] args) {
+
+            ViewPort viewPort = new ViewPort();
+
             initSocket();
             Console.ReadLine();
         }
