@@ -14,5 +14,15 @@ namespace ChatChimpClient.Core.PacketHandlers
             MemoryStream ms = new MemoryStream(data);
             reader = new BinaryReader(ms);
         }
+
+        public int readInt()
+        {
+            return (int)reader.ReadByte();
+        }
+
+        public void skipByte()
+        {
+            reader.BaseStream.Seek(1, SeekOrigin.Current);
+        }
     }
 }//

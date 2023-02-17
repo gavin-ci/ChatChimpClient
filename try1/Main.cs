@@ -16,6 +16,7 @@ namespace Networking
         static void initSocket() {
             Client client = new Client("192.168.137.1", 25565);
             client.connect();
+            startReceiving(client);
         }
 
         static void startReceiving( Client client)
@@ -25,7 +26,9 @@ namespace Networking
         }
 
         static void handlePacket( IAsyncResult result) {
-
+            Client client = (Client)result.AsyncState; // Object dat is mee gegeven in de functie
+            client.getBuffer(); // data ontvangen
+            ProcessPacket processPacket = new ProcessPacket(client);
         }
     }
 }
