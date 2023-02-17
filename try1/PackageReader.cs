@@ -12,4 +12,4 @@ namespace UserClient {
             reader = new BinaryReader(ms);
         }
     }
-}
+}//
