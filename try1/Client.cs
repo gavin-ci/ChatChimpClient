@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
+﻿using System.Net.Sockets;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UserClient {
     public class Client {
@@ -25,7 +20,8 @@ namespace UserClient {
         public Socket getConn() 
             => localSocket;
 
-        public byte[] getBuffer() => buffer;
+        public byte[] getBuffer() 
+            => buffer;
 }
    
 }
