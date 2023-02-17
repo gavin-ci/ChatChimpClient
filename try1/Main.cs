@@ -2,16 +2,11 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using UserClient;
-namespace Networking {
+using ChatChimpClient.Core.Networking;
+namespace Networking
+{
 
-    class EntryPoint {
-        //on launch
-        public struct initPacket {
-            //length package
-            int len { get; set; }
-            public ushort responseState { get; set; }
-        }
+    class EntryPoint {//
         //initialize socket
         static void Main(string[] args) {
             initSocket();

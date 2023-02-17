@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace try1
+namespace ChatChimpClient
 {
-    internal class ProcessPacket
+    internal class Globals
     {
     }
 }
