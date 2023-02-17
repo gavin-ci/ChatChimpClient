@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,6 +17,7 @@ namespace ChatChimpClient.Core.Gui.Forms
         public void startForm()
         {
             InitializeComponent();
+            initBrowser("www.google.com");
             Application.Run(this);
         }
 
@@ -32,10 +34,12 @@ namespace ChatChimpClient.Core.Gui.Forms
         }
         public void initBrowser( string filePath )
         {
-            Cef.Initialize(new CefSettings());
-            browser = new ChromiumWebBrowser(filePath);
+            CefSettings settings = new CefSettings();
+            Cef.Initialize(settings);
+            browser = new ChromiumWebBrowser( filePath );
             this.Controls.Add(browser);
-            browser.Dock= DockStyle.Fill;
+            browser.Dock = DockStyle.Fill;
+            browser.Size = new Size(200,200);
         }
     }
 }
