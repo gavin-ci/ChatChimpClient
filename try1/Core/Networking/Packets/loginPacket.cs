@@ -9,11 +9,12 @@ namespace ChatChimpClient.Core.Networking.Packets
 {
     public class loginPacket
     {
-        int usernameLength { get; set; }
-        int passwordLength { get; set; }
+        string username { get; set; }
+        string password { get; set; }
         public loginPacket(PackageReader reader)
         {
-            usernameLength = reader.readInt();
+            username = reader.readString();
+            password = reader.readString();
         }
     }
 }

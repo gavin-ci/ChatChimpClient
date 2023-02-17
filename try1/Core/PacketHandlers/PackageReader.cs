@@ -20,9 +20,10 @@ namespace ChatChimpClient.Core.PacketHandlers
             return (int)reader.ReadByte();
         }
 
-        public string readString(int length)
+        public string readString()
         {
-            byte[] byteArray = new byte[length];
+            int length = readInt();
+            byte[] byteArray = new byte[length * 2];
             for ( int x = 0; x < length; x++ )
             {
                 byteArray[x] = reader.ReadByte();
