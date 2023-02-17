@@ -2,16 +2,12 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using try1;
 using UserClient;
 namespace Networking {
 
     class EntryPoint {
-        //on launch
-        public struct initPacket {
-            //length package
-            int len { get; set; }
-            public ushort responseState { get; set; }
-        }
+
         //initialize socket
         static void Main(string[] args) {
             initSocket();
@@ -21,6 +17,7 @@ namespace Networking {
         static void initSocket() {
             Client client = new Client("192.168.137.1", 25565);
             client.connect();
+            startReceiving(client);
         }
 
         static void startReceiving( Client client)
@@ -30,7 +27,9 @@ namespace Networking {
         }
 
         static void handlePacket( IAsyncResult result) {
-
+            Client client = (Client)result.AsyncState; // Object dat is mee gegeven in de functie
+            client.getBuffer(); // data ontvangen
+            ProcessPacket processPacket = new ProcessPacket(client);
         }
     }
 }
