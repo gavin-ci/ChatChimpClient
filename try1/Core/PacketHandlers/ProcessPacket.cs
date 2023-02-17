@@ -36,6 +36,8 @@ namespace ChatChimpClient.Core.PacketHandlers
                         Console.WriteLine("connected to the server");
                     }
                     break;
+                case 2:
+                    break;
             }
         }
     };
