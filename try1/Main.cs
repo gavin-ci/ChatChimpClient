@@ -4,12 +4,15 @@ using System.Net.Sockets;
 using System.Text;
 using ChatChimpClient.Core.Networking;
 using ChatChimpClient.Core.PacketHandlers;
+using ChatChimpClient.Core.Readers.LaunchArgs;
+
 namespace Networking
 {
 
     class EntryPoint {//
         //initialize socket
         static void Main(string[] args) {
+            LaunchArgsReader argsReader = new LaunchArgsReader(args);
             initSocket();
             Console.ReadLine();
         }
