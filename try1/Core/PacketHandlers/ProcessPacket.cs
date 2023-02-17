@@ -1,10 +1,10 @@
-﻿using try1.Packets;
+﻿using ChatChimpClient.Core.Networking.Packets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UserClient;
+using ChatChimpClient.Core.Networking;
 
 namespace ChatChimpClient.Core.PacketHandlers
 {

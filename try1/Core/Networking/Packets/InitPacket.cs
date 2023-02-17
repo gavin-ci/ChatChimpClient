@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UserClient;
+using ChatChimpClient.Core.PacketHandlers;
 
-namespace try1.Packets
+namespace ChatChimpClient.Core.Networking.Packets
 {
     public class initPacket
     {
         public int response { get; set; }
         public initPacket(PackageReader reader)
         {
-           response =  reader.readInt();
+            response = reader.readInt();
         }
     }
 }

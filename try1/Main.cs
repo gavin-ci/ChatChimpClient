@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using ChatChimpClient.Core.Networking;
+using ChatChimpClient.Core.PacketHandlers;
 namespace Networking
 {
 
