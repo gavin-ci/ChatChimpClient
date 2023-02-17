@@ -5,6 +5,7 @@ using System.Text;
 using ChatChimpClient.Core.Gui;
 using ChatChimpClient.Core.Networking;
 using ChatChimpClient.Core.PacketHandlers;
+using ChatChimpClient.Core.Gui.Forms;
 namespace Networking
 {
 
@@ -12,29 +13,9 @@ namespace Networking
         //initialize socket
         [STAThread]
         static void Main(string[] args) {
-
-            ViewPort viewPort = new ViewPort();
-
-            initSocket();
+            BaseForm view = new LoginForm();
+            ViewPort viewPort = new ViewPort(view);
             Console.ReadLine();
-        }
-        //connect
-        static void initSocket() {
-            Client client = new Client("192.168.137.1", 25565);
-            client.connect();
-            startReceiving(client);
-        }
-
-        static void startReceiving( Client client)
-        {
-            EndPoint remoteEndPoint = client.getConn().RemoteEndPoint!;
-            client.getConn().BeginReceiveFrom(client.getBuffer(), 0, client.getBuffer().Length, SocketFlags.None, ref remoteEndPoint, handlePacket, client);
-        }
-
-        static void handlePacket( IAsyncResult result) {
-            Client client = (Client)result.AsyncState; // Object dat is mee gegeven in de functie
-            client.getBuffer(); // data ontvangen
-            ProcessPacket processPacket = new ProcessPacket(client);
         }
     }
 }

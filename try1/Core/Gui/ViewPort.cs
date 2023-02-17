@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatChimpClient.Core.Gui.Forms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,15 @@ namespace ChatChimpClient.Core.Gui
 {
     public class ViewPort
     {
-        public ViewPort() {
+        private BaseForm view;
+        public ViewPort( BaseForm form ) {
             Application.EnableVisualStyles();
-            view = new Form();
-            
+            this.view = form;
+            if ( view.GetType() == typeof( LoginForm ) )
+            {
+                view = (LoginForm)view;
+                view.startForm();
+            }
         }
 
         
