@@ -20,6 +20,11 @@ namespace ChatChimpClient.Core.PacketHandlers
             return (int)reader.ReadByte();
         }
 
+        public char readChar()
+        {
+            return (char)reader.ReadByte();
+        }
+
         public void skipByte()
         {
             reader.BaseStream.Seek(1, SeekOrigin.Current);
