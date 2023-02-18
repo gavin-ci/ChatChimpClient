@@ -37,7 +37,8 @@ namespace ChatChimpClient.Core.PacketHandlers
                     }
                     break;
                 case 3:
-                    
+                    LoginResult packet = new LoginResult(reader);
+                    break;
             }
         }
     };

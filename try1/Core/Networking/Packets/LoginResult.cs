@@ -7,7 +7,7 @@ using ChatChimpClient.Core.PacketHandlers;
 
 namespace ChatChimpClient.Core.Networking.Packets
 {
-    public class loginResult
+    public class LoginResult
     {
         string responce { get; set; }
         public LoginResult(PackageReader reader)
