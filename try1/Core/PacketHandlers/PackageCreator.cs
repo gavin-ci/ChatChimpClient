@@ -29,7 +29,7 @@ namespace ChatChimpClient.Core.PacketHandlers
             switch (packetId)
             {
                 case 2:
-                    loginPacket packet = new loginPacket(writer);
+                    LoginPacket packet = new LoginPacket(writer);
                     break;
             }
         }

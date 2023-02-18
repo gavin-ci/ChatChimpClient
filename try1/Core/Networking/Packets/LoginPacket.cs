@@ -7,11 +7,11 @@ using ChatChimpClient.Core.PacketHandlers;
 
 namespace ChatChimpClient.Core.Networking.Packets
 {
-    public class loginPacket
+    public class LoginPacket
     {
         string username { get; set; }
         string password { get; set; }
-        public loginPacket(PackageWriter writer)
+        public LoginPacket(PackageWriter writer)
         {
             username = "Funny Monkey The 3rd";
             password = "i-L0v3-M0nK13s";
