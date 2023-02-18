@@ -11,10 +11,9 @@ namespace ChatChimpClient.Core.Networking.Packets
     {
         string username { get; set; }
         string password { get; set; }
-        public loginPacket(PackageReader reader)
+        public loginPacket(PackageWriter writer)
         {
-            username = reader.readString();
-            password = reader.readString();
+            
         }
     }
 }
