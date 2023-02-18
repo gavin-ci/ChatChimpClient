@@ -15,10 +15,10 @@ namespace Networking
     class EntryPoint {//
         //initialize socket
         
-        static void Main(string[] args) {
+        static void Main( string[] args ) {
             Browser browser = new Browser();
             Globals.browser = browser;
-            browser.loadPage("www.google.com");
+            browser.loadPage( "www.google.com" );
             Console.ReadLine();
         }
     }
