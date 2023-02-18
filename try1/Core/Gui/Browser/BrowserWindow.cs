@@ -10,14 +10,14 @@ using CefSharp.WinForms;
 
 namespace ChatChimpClient.Core.Gui.Forms
 {
-    public class BaseForm : Form, 
-        FormInterface
+    public class BrowserWindow : Form
     {
-        public ChromiumWebBrowser browser { get; set; }
+        private ChromiumWebBrowser browser { get; set; }
+        [STAThread]
         public void startForm()
         {
             InitializeComponent();
-            initBrowser("www.google.com");
+            initBrowser();
             Application.Run(this);
         }
 
@@ -28,18 +28,20 @@ namespace ChatChimpClient.Core.Gui.Forms
             // LoginForm
             // 
             this.ClientSize = new Size(795, 460);
-            this.Name = "BaseForm";
+            this.Name = "ChatChimp";
             this.ResumeLayout(false);
 
         }
-        public void initBrowser( string filePath )
+        public void initBrowser()
         {
             CefSettings settings = new CefSettings();
             Cef.Initialize(settings);
-            browser = new ChromiumWebBrowser( filePath );
+            browser = new ChromiumWebBrowser();
             this.Controls.Add(browser);
             browser.Dock = DockStyle.Fill;
-            browser.Size = new Size(200,200);
         }
+
+        public ChromiumWebBrowser getBrowser() 
+            => browser;
     }
 }
