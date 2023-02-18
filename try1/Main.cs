@@ -17,7 +17,8 @@ namespace Networking
         static void initSocket() {
             Client client = new Client("192.168.137.1", 25565);
             client.connect();
-            startReceiving(client);
+            new Thread(() => startReceiving(client)).Start();
+            client.login();
         }
 
         static void startReceiving( Client client)

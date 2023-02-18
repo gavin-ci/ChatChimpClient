@@ -26,6 +26,12 @@ namespace ChatChimpClient.Core.Networking
 
         public byte[] getBuffer()
             => buffer;
+
+        public void login()
+        {
+            PacketHandlers.PackageCreator creator = new PacketHandlers.PackageCreator(1000, 2, this);
+            localSocket.Send(buffer);
+        }
     }
 
 }
