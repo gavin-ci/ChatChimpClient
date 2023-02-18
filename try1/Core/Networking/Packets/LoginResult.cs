@@ -12,7 +12,14 @@ namespace ChatChimpClient.Core.Networking.Packets
         string responce { get; set; }
         public LoginResult(PackageReader reader)
         {
-            responce
+            byte result = reader.readByte();
+            if (!result)
+            {
+                Console.WriteLine("Login has failed");
+                return;
+            }
+            responce = reader.readString();
+            Console.WriteLine(responce);
         }
     }
 }

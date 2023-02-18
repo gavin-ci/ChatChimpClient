@@ -36,7 +36,7 @@ namespace ChatChimpClient.Core.PacketHandlers
 
         public string readString()
         {
-            int length = readInt();
+            int length = readIntBytes();
             byte[] byteArray = new byte[length * 2];
             for ( int x = 0; x < length; x++ )
             {
@@ -44,6 +44,9 @@ namespace ChatChimpClient.Core.PacketHandlers
             }
             return Encoding.UTF8.GetString(byteArray);
         }
+
+        public byte readByte()
+            => reader.readByte();
 
         public void skipByte()
         {
