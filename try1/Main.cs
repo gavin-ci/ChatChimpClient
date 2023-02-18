@@ -18,7 +18,7 @@ namespace Networking
         static void Main( string[] args ) {
             Browser browser = new Browser();
             Globals.browser = browser;
-            browser.loadPage( "www.google.com" );
+            browser.loadDoc("<div style='width:100px;height:100px;border-style:solid;'></div>");
             Console.ReadLine();
         }
     }

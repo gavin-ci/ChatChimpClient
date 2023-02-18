@@ -13,5 +13,12 @@ namespace ChatChimpClient
     {
         public static Client client { get; set; }
         public static Browser browser { get; set; }
+
+
+
+        #region Filesystem
+        public const string HTMLFOLDERNAME = "HTML";
+        public const string GETDIRECTORYTAG = "<dir>";
+        #endregion
     }
 }
