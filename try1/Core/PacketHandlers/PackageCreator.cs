@@ -12,10 +12,12 @@ namespace ChatChimpClient.Core.PacketHandlers
     {
         byte[] data { get; set; }
         PackageWriter writer { get; set; }
+
         public PackageCreator(int packetLength, int packetId, Client client)
         {
             data = client.getBuffer();
             writer = new PackageWriter(data);
+
             switch (packetId)
             {
                 case 2:

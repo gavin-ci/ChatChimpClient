@@ -13,7 +13,13 @@ namespace ChatChimpClient.Core.Networking.Packets
         string password { get; set; }
         public loginPacket(PackageWriter writer)
         {
-            
+            username = "Funny Monkey The 3rd";
+            password = "i-L0v3-M0nK13s";
+
+            writer.writeInt(username.Length);
+            writer.writeString(username);
+            writer.writeInt(password.Length);
+            writer.writeString(password);
         }
     }
 }

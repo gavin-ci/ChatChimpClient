@@ -17,9 +17,30 @@ namespace ChatChimpClient.Core.PacketHandlers
             writer = new BinaryWriter(ms);
         }
 
+        public void writeByte(byte b)
+            => writer.Write(b);
+
+        public void writeUshort(ushort number)
+        {
+            byte[] toWrite = BitConverter.GetBytes(number);
+            for ( int x = 0; x < 2; x++ )
+            {
+                writer.Write(toWrite[x]);
+            }
+        }
+
         public void writeInt(int number)
         {
             byte[] toWrite = BitConverter.GetBytes(number);
+            for ( int x = 0; x < 4; x++ )
+            {
+                writer.Write(toWrite[x]);
+            }
+        }
+
+        public void writeString(string letters)
+        {
+            byte[] toWrite = Encoding.UTF8.GetBytes(letters);
             for ( int x = 0; x < 4; x++ )
             {
                 writer.Write(toWrite[x]);
