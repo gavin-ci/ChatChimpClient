@@ -30,14 +30,14 @@ namespace ChatChimpClient.Core.PacketHandlers
             switch(packetId)
             {
                 case 1:
-                    initPacket packet = new initPacket(reader);
-                    if( !(packet.response > 0))
+                    initPacket initPacket = new initPacket(reader);
+                    if( !(initPacket.response > 0))
                     {
                         Console.WriteLine("connected to the server");
                     }
                     break;
                 case 3:
-                    LoginResult packet = new LoginResult(reader);
+                    LoginResult loginPacket = new LoginResult(reader);
                     break;
             }
         }

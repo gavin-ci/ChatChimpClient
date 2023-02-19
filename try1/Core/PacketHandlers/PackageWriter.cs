@@ -31,11 +31,7 @@ namespace ChatChimpClient.Core.PacketHandlers
 
         public void writeInt(int number)
         {
-            byte[] toWrite = BitConverter.GetBytes(number);
-            for ( int x = 0; x < 4; x++ )
-            {
-                writer.Write(toWrite[x]);
-            }
+            writer.Write7BitEncodedInt(number);
         }
 
         public void writeString(string letters)

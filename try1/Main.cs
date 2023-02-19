@@ -19,11 +19,12 @@ namespace Networking
             Browser browser = new Browser();
             Globals.browser = browser;
             browser.loadDoc("<div style='width:100px;height:100px;border-style:solid;'></div>");
+            initSocket();
             Console.ReadLine();
         }
         //connect
         static void initSocket() {
-            Client client = new Client("192.168.137.1", 25565);
+            Client client = new Client("127.0.0.1", 25565);
             client.connect();
             new Thread(() => startReceiving(client)).Start();
             client.login();

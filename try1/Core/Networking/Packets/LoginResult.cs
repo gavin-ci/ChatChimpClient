@@ -9,17 +9,17 @@ namespace ChatChimpClient.Core.Networking.Packets
 {
     public class LoginResult
     {
-        string responce { get; set; }
+        private string response { get; set; }
         public LoginResult(PackageReader reader)
         {
-            byte result = reader.readByte();
-            if (!result)
+            int result = reader.readByte();
+            if (result > 0)
             {
                 Console.WriteLine("Login has failed");
                 return;
             }
-            responce = reader.readString();
-            Console.WriteLine(responce);
+            response = reader.readString();
+            Console.WriteLine(response);
         }
     }
 }

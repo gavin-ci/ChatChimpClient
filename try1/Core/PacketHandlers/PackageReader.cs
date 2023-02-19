@@ -45,8 +45,8 @@ namespace ChatChimpClient.Core.PacketHandlers
             return Encoding.UTF8.GetString(byteArray);
         }
 
-        public byte readByte()
-            => reader.readByte();
+        public int readByte()
+            => reader.BaseStream.ReadByte();
 
         public void skipByte()
         {
