@@ -7,10 +7,10 @@ using ChatChimpClient.Core.PacketHandlers;
 
 namespace ChatChimpClient.Core.Networking.Packets
 {
-    public class LoginResult
+    public class LoginResult : BasePacket
     {
         private string response { get; set; }
-        public LoginResult(PackageReader reader)
+        public LoginResult(byte[] data) : base(data)
         {
             int result = reader.readByte();
             if (result > 0)
