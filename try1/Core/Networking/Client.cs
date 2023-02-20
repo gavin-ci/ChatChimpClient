@@ -1,17 +1,14 @@
 ﻿using System.Net.Sockets;
 using System.Net;
 
-namespace ChatChimpClient.Core.Networking
-{
-    public class Client
-    {
+namespace ChatChimpClient.Core.Networking {
+    public class Client {
         private Socket localSocket { get; set; }
         private IPEndPoint remoteEndPoint { get; set; }
         private byte[] buffer { get; set; }
-        public Client(string ipAddress, int port)
-        {
-            IPAddress iPAddress = IPAddress.Parse(ipAddress);
-            remoteEndPoint = new IPEndPoint(iPAddress, port);
+        public Client( string ipAddress, int port ) {
+            IPAddress iPAddress = IPAddress.Parse( ipAddress );
+            remoteEndPoint = new IPEndPoint( iPAddress, port );
             //init socket
             localSocket = new Socket(
                 iPAddress.AddressFamily, 
@@ -20,9 +17,8 @@ namespace ChatChimpClient.Core.Networking
             );
             buffer = new byte[300];
         }
-        public void connect()
-        {
-            localSocket.Connect(remoteEndPoint);
+        public void connect() {
+            localSocket.Connect( remoteEndPoint );
         }
 
         public Socket getConn()
