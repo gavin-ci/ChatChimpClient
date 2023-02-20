@@ -13,7 +13,11 @@ namespace ChatChimpClient.Core.Networking
             IPAddress iPAddress = IPAddress.Parse(ipAddress);
             remoteEndPoint = new IPEndPoint(iPAddress, port);
             //init socket
-            localSocket = new Socket(iPAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+            localSocket = new Socket(
+                iPAddress.AddressFamily, 
+                SocketType.Stream, 
+                ProtocolType.Tcp
+            );
             buffer = new byte[300];
         }
         public void connect()
