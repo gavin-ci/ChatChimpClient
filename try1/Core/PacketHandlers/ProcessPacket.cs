@@ -17,9 +17,7 @@ namespace ChatChimpClient.Core.PacketHandlers
         void createHeader()
         {
             packetLength = reader.readInt();
-            reader.skipByte();
             packetId = reader.readInt();
-            reader.skipByte();
         }
 
         public ProcessPacket( Client client ) {

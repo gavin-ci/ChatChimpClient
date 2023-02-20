@@ -16,9 +16,7 @@ namespace ChatChimpClient.Core.Networking.Packets
             username = "Funny Monkey The 3rd";
             password = "i-L0v3-M0nK13s";
 
-            writer.writeUshort((ushort)username.Length);
             writer.writeString(username);
-            writer.writeUshort((ushort)password.Length);
             writer.writeString(password);
         }
     }

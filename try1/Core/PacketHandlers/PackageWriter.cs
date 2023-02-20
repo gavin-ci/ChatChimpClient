@@ -36,11 +36,9 @@ namespace ChatChimpClient.Core.PacketHandlers
 
         public void writeString(string letters)
         {
-            byte[] toWrite = Encoding.UTF8.GetBytes(letters);
-            foreach (byte b in toWrite)
-            {
-                writer.Write(b);
-            }
+            int msgLen = Encoding.UTF8.GetBytes(letters).Length;
+            writeInt(msgLen);
+            writer.Write(letters);
         }
     }
 }
