@@ -2,7 +2,7 @@
   "profiles": {
     "ChatChimpClient": {
       "commandName": "Project",
-      "commandLineArgs": "ip_address:localhost\r\nport:25565"
+      "commandLineArgs": "ip_address=localhost\r\nport=25565"
     }
   }
 }
