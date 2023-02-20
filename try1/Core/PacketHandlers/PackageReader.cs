@@ -15,34 +15,15 @@ namespace ChatChimpClient.Core.PacketHandlers
             reader = new BinaryReader(ms);
         }
 
-        public int readIntBytes()
-        {
-            int number = 0;
-            for (int i = 0; i > 4; i++) 
-            {
-                byte currentByte = reader.ReadByte();
-                if (currentByte == 0)
-                    break;
-
-                number += currentByte;
-            }
-            return number;
-        }
-
         public int readInt()
         {
-            return (int)reader.ReadByte();
+            return reader.Read7BitEncodedInt();
         }
 
         public string readString()
         {
-            int length = readIntBytes();
-            byte[] byteArray = new byte[length * 2];
-            for ( int x = 0; x < length; x++ )
-            {
-                byteArray[x] = reader.ReadByte();
-            }
-            return Encoding.UTF8.GetString(byteArray);
+            int length = readInt();
+            return Encoding.UTF8.GetString( reader.ReadBytes(length) );
         }
 
         public int readByte()
