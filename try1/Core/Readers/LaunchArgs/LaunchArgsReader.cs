@@ -10,6 +10,7 @@ namespace ChatChimpClient.Core.Readers.LaunchArgs {
         public string value;
     }
 
+
     public class LaunchArgsReader {
         public List<argsInfo> argsList = new List<argsInfo>();
         public LaunchArgsReader( string[] args ) {
@@ -21,5 +22,13 @@ namespace ChatChimpClient.Core.Readers.LaunchArgs {
                 argsList.Add( argInfo );
             }
         }
-    }
+
+        public string? SearchArgsInfo( string argumentName ) {
+            foreach ( argsInfo argInfo in argsList ) {
+                if ( argInfo.name == argumentName ) {
+                    return argInfo.value;
+                }
+            } return null;
+        }
+    } 
 }
