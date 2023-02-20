@@ -16,6 +16,11 @@ namespace ChatChimpClient.Core.Networking.Packets
             reader = new BinaryReader(ms);
         }
 
+        public BasePacket()
+        {
+            
+        }
+
         public int readIntBytes()
         {
             int number = 0;
