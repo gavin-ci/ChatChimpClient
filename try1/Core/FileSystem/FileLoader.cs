@@ -14,7 +14,13 @@ namespace ChatChimpClient.Core.FileSystem
         }
 
         public string getHtmlFileContent( string fileName )
-            => File.ReadAllText( Path.Combine(assetsFolderPath, Globals.HTMLFOLDERNAME, fileName) ).Replace( Globals.GETDIRECTORYTAG, Directory.GetCurrentDirectory() );
+            => File.ReadAllText( 
+                Path.Combine(
+                    assetsFolderPath, 
+                    Globals.HTMLFOLDERNAME, 
+                    fileName
+                ) 
+            ).Replace( Globals.GETDIRECTORYTAG, Directory.GetCurrentDirectory() );
 
         
     }
