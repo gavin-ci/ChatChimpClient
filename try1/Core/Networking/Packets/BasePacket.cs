@@ -16,7 +16,7 @@ namespace ChatChimpClient.Core.Networking.Packets
             reader = new BinaryReader(ms);
             writer = new BinaryWriter(ms);
         }
-
+        
         // ---------------- WRITER FUNCTIONS ----------------
 
         public void writeByte(byte b)
@@ -61,18 +61,13 @@ namespace ChatChimpClient.Core.Networking.Packets
 
         public int readInt()
         {
-            return (int)reader.ReadByte();
+            return reader.Read7BitEncodedInt();
         }
 
         public string readString()
         {
-            int length = readIntBytes();
-            byte[] byteArray = new byte[length * 2];
-            for ( int x = 0; x < length; x++ )
-            {
-                byteArray[x] = reader.ReadByte();
-            }
-            return Encoding.UTF8.GetString(byteArray);
+            int length = readInt();
+            return Encoding.UTF8.GetString( reader.ReadBytes(length) );
         }
 
         public int readByte()
