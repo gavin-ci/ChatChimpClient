@@ -14,7 +14,7 @@ namespace ChatChimpClient.Core.PacketHandlers
         private int packetId { get; set; }
         private PackageReader reader { get; set; }
 
-        void createHeader()
+        void readHeader()
         {
             packetLength = reader.readInt();
             packetId = reader.readInt();
@@ -23,19 +23,19 @@ namespace ChatChimpClient.Core.PacketHandlers
         public ProcessPacket( Client client ) {
             data = client.getBuffer();
             reader = new PackageReader( data );
-            createHeader();
+            readHeader();
 
             switch(packetId)
             {
                 case 1:
-                    initPacket initPacket = new initPacket(reader);
+                    initPacket initPacket = new initPacket(data);
                     if( !(initPacket.response > 0))
                     {
                         Console.WriteLine("connected to the server");
                     }
                     break;
                 case 3:
-                    LoginResult loginPacket = new LoginResult(reader);
+                    LoginResult loginPacket = new LoginResult(data);
                     break;
             }
         }
