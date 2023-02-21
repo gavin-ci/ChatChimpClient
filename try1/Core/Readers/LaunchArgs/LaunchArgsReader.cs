@@ -28,7 +28,8 @@ namespace ChatChimpClient.Core.Readers.LaunchArgs {
                 if ( argInfo.name == argumentName ) {
                     return argInfo.value;
                 }
-            } return null;
+            }
+            return null;
         }
     } 
 }

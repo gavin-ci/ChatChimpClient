@@ -9,7 +9,7 @@ namespace ChatChimpClient.Core.FileSystem
     public class FileLoader
     {
         string assetsFolderPath { get; set; }
-        public FileLoader( string assetsFolderPath ) {
+        public FileLoader( string assetsFolderPath = "assets" ) {
             this.assetsFolderPath = assetsFolderPath;
         }
 
@@ -19,6 +19,15 @@ namespace ChatChimpClient.Core.FileSystem
                     assetsFolderPath, 
                     Globals.HTMLFOLDERNAME, 
                     fileName
+                ) 
+            ).Replace( Globals.GETDIRECTORYTAG, Directory.GetCurrentDirectory() );
+
+                public string getJsFileContent( string fileName )
+            => File.ReadAllText( 
+                Path.Combine(
+                    assetsFolderPath, 
+                    Globals.JSFOLDERNAME, 
+                    fileName + ".js"
                 ) 
             ).Replace( Globals.GETDIRECTORYTAG, Directory.GetCurrentDirectory() );
 
