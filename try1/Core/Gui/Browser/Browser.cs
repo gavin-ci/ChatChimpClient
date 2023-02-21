@@ -26,7 +26,7 @@ namespace ChatChimpClient.Core.Gui.Browser
             int msgIdLen = msg.IndexOf('|');
             int msgId = int.Parse( msg.Substring( 0, msgIdLen ) );
             string msgData = msg.Substring( msgIdLen );
-            JavascriptEventSwitch.HandleEvent(msgId, msgData);
+            Task.Run( Action() => () => JavascriptEventSwitch.HandleEvent(msgId, msgData) );
             }
         }
 
