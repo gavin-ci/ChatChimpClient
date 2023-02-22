@@ -5,6 +5,7 @@ namespace ChatChimpClient.Core.Networking {
     public class Client {
         private Socket localSocket { get; set; }
         private IPEndPoint remoteEndPoint { get; set; }
+        private clientStates currentState { get; set; }
         private byte[] buffer { get; set; }
         public Client( string ipAddress, int port ) {
             IPAddress iPAddress = IPAddress.Parse( ipAddress );
@@ -15,6 +16,7 @@ namespace ChatChimpClient.Core.Networking {
                 SocketType.Stream, 
                 ProtocolType.Tcp
             );
+            currentState = clientStates.AWAIT_CONNECTION;
             buffer = new byte[300];
         }
         public void connect() {
