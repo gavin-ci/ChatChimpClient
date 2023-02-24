@@ -35,6 +35,7 @@ namespace ChatChimpClient.Core.Networking {
         {
             //PacketHandlers.PackageCreator creator = new PacketHandlers.PackageCreator(1000, 2, this);
             PackageWriter writer = new PackageWriter();
+            writer.createHeader(18 + username.Length + password.Length, 2);
             writer.writeInt(username.Length);
             writer.writeString(username);
             writer.writeInt(password.Length);

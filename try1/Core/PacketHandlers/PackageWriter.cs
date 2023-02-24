@@ -19,6 +19,11 @@ namespace ChatChimpClient.Core.PacketHandlers
             writer = new BinaryWriter(ms);
         }
 
+        public void createHeader(int packetLength, int packetId) {
+            writeInt(packetLength);
+            writeInt(packetId);
+        }
+
         public void writeByte(byte b)
             => writer.Write(b);
 
