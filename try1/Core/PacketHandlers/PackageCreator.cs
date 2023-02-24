@@ -26,7 +26,7 @@ namespace ChatChimpClient.Core.PacketHandlers
             createHeader((byte)packetLength, (byte)packetId);
             switch (packetId)
             {
-                case 2:
+                case (int)packetTypes.LOGIN:
                     LoginPacket packet = new LoginPacket(writer);
                     break;
             }
