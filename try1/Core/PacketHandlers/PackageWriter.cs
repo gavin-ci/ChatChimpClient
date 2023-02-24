@@ -8,11 +8,13 @@ using ChatChimpClient.Core.Networking;
 
 namespace ChatChimpClient.Core.PacketHandlers
 {
-    public class PackageWriter
-    {
+    public class PackageWriter {
         BinaryWriter writer { get; set; }
-        public PackageWriter(byte[] data)
+
+        byte[] data { get; set; }
+        public PackageWriter()
         {
+            data = new byte[ Globals.client.getBuffer().Length ];
             MemoryStream ms = new MemoryStream(data);
             writer = new BinaryWriter(ms);
         }
@@ -40,5 +42,8 @@ namespace ChatChimpClient.Core.PacketHandlers
             writeInt(msgLen);
             writer.Write(letters);
         }
+
+        public byte[] getData()
+            => data;
     }
 }

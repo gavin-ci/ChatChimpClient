@@ -45,7 +45,7 @@ document.getElementById(""btn"").addEventListener(""click"", () => LoginClient( 
             Client client = new Client("127.0.0.1", 25565);
             client.connect();
             new Thread(() => startReceiving(client)).Start();
-            client.login();
+            //client.login();
         }
 
         static void startReceiving( Client client)

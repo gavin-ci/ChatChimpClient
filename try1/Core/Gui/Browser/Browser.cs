@@ -3,6 +3,7 @@ using CefSharp.WinForms;
 using ChatChimpClient.Core.Gui.Browser.BrowserEvents;
 using ChatChimpClient.Core.Gui.Forms;
 using ChatChimpClient.Core.Readers.HTML;
+using Newtonsoft.Json;
 
 namespace ChatChimpClient.Core.Gui.Browser {
     public class Browser {
@@ -19,11 +20,10 @@ namespace ChatChimpClient.Core.Gui.Browser {
         }
 
         public void javascriptMessage(object? sender, JavascriptMessageReceivedEventArgs eventArgs) {
-            string msg = eventArgs.ConvertMessageTo<string>();
-            int msgIdLen = msg.IndexOf('|');
-            int msgId = int.Parse(msg.Substring(0, msgIdLen));
-            string msgData = msg.Substring(msgIdLen);
-            JavascriptEventSwitch.HandleEvent(msgId, msgData);
+            string json = (string)eventArgs.Message;
+            JsonStruct obj = new JsonStruct(json);
+            JavascriptEventSwitch.HandleEvent(obj);
+            //JavascriptEventSwitch.HandleEvent(msgId, msgData);
         }
         public void loadPage(string url)
             => chrome.LoadUrl(url);

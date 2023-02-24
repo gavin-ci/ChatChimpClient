@@ -21,8 +21,8 @@ namespace ChatChimpClient.Core.PacketHandlers
 
         public PackageCreator(int packetLength, int packetId, Client client)
         {
-            data = client.getBuffer();
-            writer = new PackageWriter(data);
+            //data = client.getBuffer();
+            writer = new PackageWriter();
             createHeader((byte)packetLength, (byte)packetId);
             switch (packetId)
             {

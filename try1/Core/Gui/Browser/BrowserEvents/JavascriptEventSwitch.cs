@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatChimpClient.Core.Gui.Browser.BrowserEvents.JsonEventStructs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,13 +9,11 @@ using System.Windows.Forms.VisualStyles;
 namespace ChatChimpClient.Core.Gui.Browser.BrowserEvents {
     public static class JavascriptEventSwitch {
 
-        public static async void HandleEvent( int eventId, string eventData ) {
-            switch(eventId) {
+        public static async void HandleEvent( JsonStruct json ) {
+            switch(json.id) {
                 case (int)JavascriptEventType.LOGIN:
-                    string[] loginInfo = eventData.Split('|');
-                    string username = loginInfo[0];
-                    string password = loginInfo[1];
-                    Console.WriteLine("test");
+                    LoginStructJson loginJson = new LoginStructJson(json);
+                    Globals.client.login(loginJson.username, loginJson.password);
                     // login function
                     return;
             }
