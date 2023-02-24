@@ -11,16 +11,17 @@ namespace ChatChimpClient.Core.PacketHandlers {
         private byte[] data { get; set; }
         private int packetLength { get; set; }
         private int packetId { get; set; }
-        private PackageReader reader { get; set; }
+        private BinaryReader reader { get; set; }
 
         void readHeader() {
-            packetLength = reader.readInt();
-            packetId = reader.readInt();
+            packetLength = reader.Read7BitEncodedInt();
+            packetId = reader.Read7BitEncodedInt();
         }
 
         public ProcessPacket( Client client ) {
             data = client.getBuffer();
-            reader = new PackageReader( data );
+            MemoryStream ms = new MemoryStream(data);
+            reader = new BinaryReader(ms);
             readHeader();
 
             switch(packetId) {

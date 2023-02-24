@@ -13,8 +13,8 @@ namespace ChatChimpClient.Core.Networking.Packets
     }
 
     enum packetSizes {
-        CONNECT = 500,
+        CONNECT = 60,
         LOGIN = 500,
-        LOGIN_RESULT = 500
+        LOGIN_RESULT = 130
     }
 }

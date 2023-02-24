@@ -8,8 +8,8 @@ namespace ChatChimpClient.Core.Networking.Packets
 {
     public class BasePacket
     {
-        BinaryReader reader { get; set; }
-        BinaryWriter writer { get; set; }
+        protected BinaryReader reader { get; set; }
+        protected BinaryWriter writer { get; set; }
         public BasePacket(byte[] data)
         {
             MemoryStream ms = new MemoryStream(data);

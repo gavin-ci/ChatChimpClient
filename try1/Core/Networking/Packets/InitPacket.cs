@@ -12,7 +12,7 @@ namespace ChatChimpClient.Core.Networking.Packets
         public int response { get; set; }
         public initPacket(byte[] data) : base(data)
         {
-            response = reader.readInt();
+            response = readInt();
         }
     }
 }
