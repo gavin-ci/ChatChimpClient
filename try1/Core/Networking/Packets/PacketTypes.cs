@@ -13,10 +13,10 @@ namespace ChatChimpClient.Core.Networking.Packets
         GET_KEY = 4
     }
 
-    enum packetSizes {
+    enum netSizes {
         CONNECT = 60,
-        LOGIN = 500,
         LOGIN_RESULT = 130,
-        GET_KEY = 120
+        GET_KEY = 120,
+        LOGGEDIN = 6024
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChatChimpClient.Core.Networking
 {
-    enum clientStates
+    enum ClientStates
     {
         AWAIT_CONNECTION = 0,
         AWAIT_KEY = 1,
