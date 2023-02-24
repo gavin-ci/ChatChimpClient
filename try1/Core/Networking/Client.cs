@@ -1,5 +1,6 @@
 ﻿using System.Net.Sockets;
 using System.Net;
+using ChatChimpClient.Core.Networking.Packets;
 
 namespace ChatChimpClient.Core.Networking {
     public class Client {
@@ -33,6 +34,17 @@ namespace ChatChimpClient.Core.Networking {
         {
             PacketHandlers.PackageCreator creator = new PacketHandlers.PackageCreator(1000, 2, this);
             localSocket.Send(buffer);
+        }
+
+        public void changePacketSize() {
+            switch (currentState) {
+                case (int)clientStates.AWAIT_CONNECTION:
+                    buffer = new byte[(int)packetSizes.CONNECT];
+                    break;
+                case (clientStates)(int)clientStates.AWAIT_KEY:
+                    break;
+            }
+            GC.Collect();
         }
     }
 

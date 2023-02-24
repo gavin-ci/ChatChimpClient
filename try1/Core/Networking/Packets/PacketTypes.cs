@@ -9,12 +9,14 @@ namespace ChatChimpClient.Core.Networking.Packets
     enum packetTypes { 
         CONNECT = 1,
         LOGIN = 2,
-        LOGIN_RESULT = 3
+        LOGIN_RESULT = 3,
+        GET_KEY = 4
     }
 
     enum packetSizes {
         CONNECT = 60,
         LOGIN = 500,
-        LOGIN_RESULT = 130
+        LOGIN_RESULT = 130,
+        GET_KEY = 120
     }
 }

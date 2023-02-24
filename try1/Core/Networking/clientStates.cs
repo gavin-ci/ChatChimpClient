@@ -8,8 +8,9 @@ namespace ChatChimpClient.Core.Networking
 {
     enum clientStates
     {
-        AWAIT_CONNECTION,
-        AWAIT_KEY,
-        AWAIT_AUTH
+        AWAIT_CONNECTION = 0,
+        AWAIT_KEY = 1,
+        AWAIT_AUTH = 2,
+        LOGGEDIN = 3
     }
 }
