@@ -1,10 +1,12 @@
 ﻿using System.Net.Sockets;
 using System.Net;
+using ChatChimpClient.Core.Networking.Packets;
 
 namespace ChatChimpClient.Core.Networking {
     public class Client {
         private Socket localSocket { get; set; }
         private IPEndPoint remoteEndPoint { get; set; }
+        private ClientStates currentState { get; set; }
         private byte[] buffer { get; set; }
         public Client( string ipAddress, int port ) {
             IPAddress iPAddress = IPAddress.Parse( ipAddress );
@@ -15,7 +17,8 @@ namespace ChatChimpClient.Core.Networking {
                 SocketType.Stream, 
                 ProtocolType.Tcp
             );
-            buffer = new byte[6000];
+            currentState = ClientStates.AWAIT_CONNECTION;
+            changePacketSize();
         }
         public void connect() {
             localSocket.Connect( remoteEndPoint );
@@ -26,6 +29,30 @@ namespace ChatChimpClient.Core.Networking {
 
         public byte[] getBuffer()
             => buffer;
+
+        public void login()
+        {
+            PacketHandlers.PackageCreator creator = new PacketHandlers.PackageCreator(1000, 2, this);
+            localSocket.Send(buffer);
+        }
+
+        public void changePacketSize() {
+            switch (currentState) {
+                default:
+                    buffer = new byte[(int)netSizes.CONNECT];
+                    break;
+                case (ClientStates)(int)ClientStates.AWAIT_KEY:
+                    buffer = new byte[(int)netSizes.GET_KEY];
+                    break;
+                case (ClientStates)(int)ClientStates.AWAIT_AUTH:
+                    buffer = new byte[(int)netSizes.LOGIN_RESULT];
+                    break;
+                case (ClientStates)(int)ClientStates.LOGGEDIN:
+                    buffer = new byte[(int)netSizes.LOGGEDIN];
+                    break;
+            }
+            GC.Collect();
+        }
     }
 
 }

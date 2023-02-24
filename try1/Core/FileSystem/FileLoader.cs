@@ -19,8 +19,7 @@ namespace ChatChimpClient.Core.FileSystem
                     assetsFolderPath, 
                     Globals.HTMLFOLDERNAME, 
                     fileName
-                ) 
-            ).Replace( Globals.GETDIRECTORYTAG, Directory.GetCurrentDirectory() );
+                ) ).Replace( Globals.GETDIRECTORYTAG, Directory.GetCurrentDirectory() );
 
                 public string getJsFileContent( string fileName )
             => File.ReadAllText( 
@@ -30,7 +29,5 @@ namespace ChatChimpClient.Core.FileSystem
                     fileName + ".js"
                 ) 
             ).Replace( Globals.GETDIRECTORYTAG, Directory.GetCurrentDirectory() );
-
-        
     }
 }
