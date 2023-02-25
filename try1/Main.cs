@@ -21,7 +21,7 @@ namespace Networking
         static void Main( string[] args ) {
             LaunchArgsReader reader = new LaunchArgsReader( args );
             Client client = new Client(reader.SearchArgsInfo("ip_address"), int.Parse(reader.SearchArgsInfo("port")));
-            //client.connect();
+            client.connect();
             Globals.client = client;
             Globals.fileLoader = new FileLoader( reader.SearchArgsInfo("assetsFolder") );
             Browser browser = new Browser();
@@ -34,18 +34,11 @@ namespace Networking
 <input id='password'>
 <button id='btn'>test</button>
 <script>
-document.getElementById(""btn"").addEventListener(""click"", () => LoginClient( document.getElementById('username').value, document.getElementById('username').value ));
+document.getElementById(""btn"").addEventListener(""click"", () => LoginClient( document.getElementById('username').value, document.getElementById('password').value ));
 </script>
 
 ");
             Console.ReadLine();
-        }
-        //connect
-        static void initSocket() {
-            Client client = new Client("127.0.0.1", 25565);
-            client.connect();
-            new Thread(() => startReceiving(client)).Start();
-            //client.login();
         }
 
         static void startReceiving( Client client)
