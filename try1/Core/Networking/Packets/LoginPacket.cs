@@ -11,11 +11,9 @@ namespace ChatChimpClient.Core.Networking.Packets
     {
         string username { get; set; }
         string password { get; set; }
-        public LoginPacket(PackageWriter writer)
+        public LoginPacket(PackageWriter writer, string username, string password)
         {
-            username = "test";
-            password = "123";
-
+            writer.createHeader(18 + username.Length + password.Length, 2);
             writer.writeString(username);
             writer.writeString(password);
         }
