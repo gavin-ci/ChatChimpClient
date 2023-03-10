@@ -2,23 +2,24 @@
 using System.Net;
 using ChatChimpClient.Core.Networking.Packets;
 using ChatChimpClient.Core.PacketHandlers;
+using System.Timers;
 
 namespace ChatChimpClient.Core.Networking {
     public class Client {
         private Socket localSocket { get; set; }
         private IPEndPoint remoteEndPoint { get; set; }
-        private ClientStates currentState { get; set; }
+        private int currentState { get; set; }
+        private System.Timers.Timer MrHEARTBEEEEEEEEEEEEEAST { get; set; }
         private byte[] buffer { get; set; }
         public Client( string ipAddress, int port ) {
             IPAddress iPAddress = IPAddress.Parse( ipAddress );
             remoteEndPoint = new IPEndPoint( iPAddress, port );
-            //init socket
             localSocket = new Socket(
                 iPAddress.AddressFamily, 
                 SocketType.Stream, 
                 ProtocolType.Tcp
             );
-            currentState = ClientStates.AWAIT_CONNECTION;
+            currentState = (int)ClientStates.AWAIT_CONNECTION;
             changePacketSize();
         }
         public void connect() {
@@ -30,6 +31,9 @@ namespace ChatChimpClient.Core.Networking {
 
         public byte[] getBuffer()
             => buffer;
+
+        public int getState()
+            => currentState;
 
         public void login( string username, string password )
         {
@@ -46,17 +50,30 @@ namespace ChatChimpClient.Core.Networking {
                 default:
                     buffer = new byte[(int)netSizes.CONNECT];
                     break;
-                case (ClientStates)(int)ClientStates.AWAIT_KEY:
+                case (int)ClientStates.AWAIT_KEY:
                     buffer = new byte[(int)netSizes.GET_KEY];
                     break;
-                case (ClientStates)(int)ClientStates.AWAIT_AUTH:
+                case (int)ClientStates.AWAIT_AUTH:
                     buffer = new byte[(int)netSizes.LOGIN_RESULT];
                     break;
-                case (ClientStates)(int)ClientStates.LOGGEDIN:
+                case (int)ClientStates.LOGGEDIN:
                     buffer = new byte[(int)netSizes.LOGGEDIN];
                     break;
             }
             GC.Collect();
+        }
+
+        public void startTimer()
+        {
+            MrHEARTBEEEEEEEEEEEEEAST = new System.Timers.Timer(2000);
+            MrHEARTBEEEEEEEEEEEEEAST.Elapsed += sendBeat;
+        }
+
+        public void sendBeat(object? source, ElapsedEventArgs e)
+        {
+            PackageWriter writer = new PackageWriter();
+            Heartbeat heartbeat = new Heartbeat(writer);
+            localSocket.Send(writer.getData());
         }
     }
 
