@@ -8,6 +8,7 @@ using ChatChimpClient.Core.Gui;
 using ChatChimpClient.Core.Gui.Browser;
 using ChatChimpClient.Core.Gui.Browser.BrowserEvents;
 using ChatChimpClient.Core.Networking;
+using ChatChimpClient.Core.PacketHandlers;
 
 namespace ChatChimpClient
 {
@@ -16,6 +17,7 @@ namespace ChatChimpClient
         public static Client client { get; set; }
         public static Browser browser { get; set; }
         public static FileLoader fileLoader { get; set; }
+        public static PackageHandler packageHandler { get; set; }
 
         #region Filesystem
         public const string HTMLFOLDERNAME = "HTML";

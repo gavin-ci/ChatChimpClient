@@ -19,11 +19,30 @@ namespace ChatChimpClient.Core.Networking {
                 SocketType.Stream, 
                 ProtocolType.Tcp
             );
+            Globals.packageHandler = new PackageHandler(localSocket);
             currentState = (int)ClientStates.AWAIT_CONNECTION;
             changePacketSize();
         }
         public void connect() {
             localSocket.Connect( remoteEndPoint );
+        }
+
+        public void startReceiving() {
+            EndPoint remoteEndPoint = getConn().RemoteEndPoint!;
+            getConn().BeginReceiveFrom(
+                getBuffer(),
+                0,
+                getBuffer().Length,
+                SocketFlags.None, ref remoteEndPoint,
+                handlePacket,
+                this
+            );
+        }
+
+        private void handlePacket(IAsyncResult result) {
+            Client client = (Client)result.AsyncState; // Object dat is mee gegeven in de functie
+            client.getBuffer(); // data ontvangen
+            ProcessPacket processPacket = new ProcessPacket(client);
         }
 
         public Socket getConn()
@@ -34,16 +53,6 @@ namespace ChatChimpClient.Core.Networking {
 
         public int getState()
             => currentState;
-
-        public void login( string username, string password )
-        {
-            //PacketHandlers.PackageCreator creator = new PacketHandlers.PackageCreator(1000, 2, this);
-            PackageWriter writer = new PackageWriter();
-            writer.createHeader(18 + username.Length + password.Length, 2);
-            writer.writeString(username);
-            writer.writeString(password);
-            localSocket.Send(writer.getData());
-        }
 
         public void changePacketSize() {
             switch (currentState) {
@@ -71,9 +80,7 @@ namespace ChatChimpClient.Core.Networking {
 
         public void sendBeat(object? source, ElapsedEventArgs e)
         {
-            PackageWriter writer = new PackageWriter();
-            Heartbeat heartbeat = new Heartbeat(writer);
-            localSocket.Send(writer.getData());
+            Heartbeat heartbeat = new Heartbeat();
         }
     }
 

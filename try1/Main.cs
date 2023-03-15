@@ -22,6 +22,7 @@ namespace Networking
             LaunchArgsReader reader = new LaunchArgsReader( args );
             Client client = new Client(reader.SearchArgsInfo("ip_address"), int.Parse(reader.SearchArgsInfo("port")));
             client.connect();
+            client.startReceiving();
             Globals.client = client;
             Globals.fileLoader = new FileLoader( reader.SearchArgsInfo("assetsFolder") );
             Browser browser = new Browser();
@@ -39,25 +40,6 @@ document.getElementById(""btn"").addEventListener(""click"", () => LoginClient( 
 
 ");
             Console.ReadLine();
-        }
-
-        static void startReceiving( Client client)
-        {
-            EndPoint remoteEndPoint = client.getConn().RemoteEndPoint!;
-            client.getConn().BeginReceiveFrom(
-                client.getBuffer(), 
-                0, 
-                client.getBuffer().Length, 
-                SocketFlags.None, ref remoteEndPoint, 
-                handlePacket, 
-                client
-            );
-        }
-
-        static void handlePacket( IAsyncResult result) {
-            Client client = (Client)result.AsyncState; // Object dat is mee gegeven in de functie
-            client.getBuffer(); // data ontvangen
-            ProcessPacket processPacket = new ProcessPacket(client);
         }
     }
 }

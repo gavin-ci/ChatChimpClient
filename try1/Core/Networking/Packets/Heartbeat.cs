@@ -9,9 +9,9 @@ namespace ChatChimpClient.Core.Networking.Packets
 {
     internal class Heartbeat
     {
-        public Heartbeat(PackageWriter writer) {
-            writer.createHeader(9, 5);
-            writer.writeByte((byte)Globals.client.getState());
+        public Heartbeat() {
+            Globals.packageHandler.createHeader(9, 5);
+            Globals.packageHandler.writeByte((byte)Globals.client.getState());
         }
     }
 }
