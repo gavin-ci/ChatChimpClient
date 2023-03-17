@@ -22,7 +22,11 @@ namespace ChatChimpClient.Core.Networking {
             changePacketSize();
         }
         public void connect() {
-            localSocket.Connect( remoteEndPoint );
+            try {
+                localSocket.Connect(remoteEndPoint);
+            }catch( Exception ) {
+                MessageBox.Show("Cannot connect to server, If this issue persists contact the MonkeyTeam.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public Socket getConn()
