@@ -24,8 +24,8 @@ namespace ChatChimpClient.Core.Networking {
         }
         public void connect() {
             localSocket.Connect( remoteEndPoint );
-            startTimer();
             Globals.packageHandler = new PackageHandler(localSocket);
+            startTimer();
             new Thread(() => { receive(); }).Start();
         }
 
@@ -71,6 +71,8 @@ namespace ChatChimpClient.Core.Networking {
         {
             MrHEARTBEEEEEEEEEEEEEAST = new System.Timers.Timer(2000);
             MrHEARTBEEEEEEEEEEEEEAST.Elapsed += sendBeat;
+            MrHEARTBEEEEEEEEEEEEEAST.AutoReset = true;
+            MrHEARTBEEEEEEEEEEEEEAST.Enabled = true;
         }
 
         public void sendBeat(object? source, ElapsedEventArgs e)
