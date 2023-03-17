@@ -22,7 +22,6 @@ namespace Networking
             LaunchArgsReader reader = new LaunchArgsReader( args );
             Client client = new Client(reader.SearchArgsInfo("ip_address"), int.Parse(reader.SearchArgsInfo("port")));
             client.connect();
-            client.startReceiving();
             Globals.client = client;
             Globals.fileLoader = new FileLoader( reader.SearchArgsInfo("assetsFolder") );
             Browser browser = new Browser();

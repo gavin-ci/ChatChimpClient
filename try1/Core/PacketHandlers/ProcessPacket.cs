@@ -16,7 +16,7 @@ namespace ChatChimpClient.Core.PacketHandlers {
             packetId = Globals.packageHandler.readInt();
         }
 
-        public ProcessPacket( Client client ) {
+        public ProcessPacket() {
             readHeader();
 
             switch(packetId) {

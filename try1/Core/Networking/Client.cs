@@ -19,30 +19,24 @@ namespace ChatChimpClient.Core.Networking {
                 SocketType.Stream, 
                 ProtocolType.Tcp
             );
-            Globals.packageHandler = new PackageHandler(localSocket);
             currentState = (int)ClientStates.AWAIT_CONNECTION;
             changePacketSize();
         }
         public void connect() {
             localSocket.Connect( remoteEndPoint );
+            Globals.packageHandler = new PackageHandler(localSocket);
+            new Thread(() => { receive(); }).Start();
         }
 
-        public void startReceiving() {
-            EndPoint remoteEndPoint = getConn().RemoteEndPoint!;
-            getConn().BeginReceiveFrom(
-                getBuffer(),
-                0,
-                getBuffer().Length,
-                SocketFlags.None, ref remoteEndPoint,
-                handlePacket,
-                this
-            );
-        }
+        public void receive() {
+            while (true) {
+                while (!Globals.packageHandler.DataAvailable)
+                    continue;
 
-        private void handlePacket(IAsyncResult result) {
-            Client client = (Client)result.AsyncState; // Object dat is mee gegeven in de functie
-            client.getBuffer(); // data ontvangen
-            ProcessPacket processPacket = new ProcessPacket(client);
+                ProcessPacket packetProcess = new ProcessPacket();
+
+                Globals.packageHandler.Flush();
+            }
         }
 
         public Socket getConn()
