@@ -24,7 +24,6 @@ namespace ChatChimpClient.Core.PacketHandlers {
                     initPacket initPacket = new initPacket();
                     if( !(initPacket.response > 0)) {
                         Console.WriteLine("connected to the server");
-                        Globals.client.startTimer();
                     }
                     break;
                 case (int)packetTypes.LOGIN_RESULT:

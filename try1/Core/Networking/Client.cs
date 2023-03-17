@@ -24,6 +24,7 @@ namespace ChatChimpClient.Core.Networking {
         }
         public void connect() {
             localSocket.Connect( remoteEndPoint );
+            startTimer();
             Globals.packageHandler = new PackageHandler(localSocket);
             new Thread(() => { receive(); }).Start();
         }
