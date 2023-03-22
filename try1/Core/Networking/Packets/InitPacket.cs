@@ -7,12 +7,12 @@ using ChatChimpClient.Core.PacketHandlers;
 
 namespace ChatChimpClient.Core.Networking.Packets
 {
-    public class initPacket : BasePacket
+    public class initPacket
     {
         public int response { get; set; }
-        public initPacket(byte[] data) : base(data)
+        public initPacket()
         {
-            response = readInt();
+            response = Globals.packageHandler.readByte();
         }
     }
 }
