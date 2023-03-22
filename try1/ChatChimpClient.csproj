@@ -14,6 +14,7 @@
     <PackageReference Include="CefSharp.Common.NETCore" Version="110.0.280" />
     <PackageReference Include="CefSharp.WinForms.NETCore" Version="110.0.280" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="System.Management" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>

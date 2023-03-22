@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChatServer.Core.Encryption {
+namespace ChatChimpClient.Core.Encryption {
     public class SHA {
         public static string ComputeSha256Hash(string rawData) {
             // Create a SHA256   

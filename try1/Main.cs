@@ -11,6 +11,7 @@ using ChatChimpClient;
 using ChatChimpClient.Core.Readers.LaunchArgs;
 using ChatChimpClient.Core.Gui.Browser.BrowserEvents;
 using ChatChimpClient.Core.FileSystem;
+using ChatChimpClient.Core.Networking.Packets;
 
 namespace Networking
 {
